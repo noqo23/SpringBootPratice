@@ -17,20 +17,21 @@
 <!-- Begin page content -->
 <div class="container">
     <h2 class="mt-3">글작성</h2>
-    <form action="POST">
+    <form action="#" th:action="@{/board/new}" th:object="${board}" method="post">
+        <input type="hidden" th:field="*{id}">
         <div class="mb-3">
             <label for="title" class="form-label">제목</label>
-            <input type="email" class="form-control" id="title" placeholder="제목을 입력하세요">
+            <input type="text" class="form-control" id="title" th:field="*{title}">
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
-            <textarea class="form-control" id="content" rows="3" placeholder="내용을 입력하세요"></textarea>
+            <textarea class="form-control" id="content" rows="3" th:field="*{content}"></textarea>
         </div>
-    </form>
     <div class="text-end">
-        <button type="submit" class="btn btn-danger"><a th:href="@{/board/list}" style="color:white; text-decoration : none;">취소</a></button>
+        <button type="button" class="btn btn-danger"><a th:href="@{/board/list}" style="color:white; text-decoration : none;">취소</a></button>
         <button type="submit" class="btn btn-primary">작성완료</button>
     </div>
+    </form>
 </div>
 
 <!--footer-->

@@ -1,6 +1,8 @@
 package com.ti.ty.model;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long id;
+
     private String title;
     private String content;
 
