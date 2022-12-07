@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" th:fragment="menu(menu)">
     <div class="container-fluid">
@@ -16,6 +16,15 @@
                     <a class="nav-link" href="#" th:href="@{/board/list}" th:classappend="${menu} == 'board'? 'active'">게시판</a>
                 </li>
             </ul>
+            <a class="btn btn-secondary my-2 my-sm-0" th:href="@{/account/login}" sec:authorize="!isAuthenticated()">Login</a>
+            <a class="btn btn-secondary my-2 my-sm-0" th:href="@{/account/register}" sec:authorize="!isAuthenticated()">회원가입</a>
+            <form class="form-inline my-2 my-lg-0" sec:authorize="isAuthenticated()" style="display : flex;"
+            method="post" th:action="@{/logout}">
+                <!--                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+                <span class="text-white" sec:authentication="name">사용자</span>
+                <span class="text-white mx-2" sec:authentication="principal.authorities">권한</span>
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">LogOut</button>
+            </form>
         </div>
     </div>
 </nav>
