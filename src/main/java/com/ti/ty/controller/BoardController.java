@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,8 +53,11 @@ public class BoardController {
     }
 
     @PostMapping("/board/new")
-    public String boardWrite(@ModelAttribute Board board) {
-        boardService.write(board);
+    public String boardWrite(@ModelAttribute Board board, Authentication authentication) {
+
+        String username = authentication.getName();
+
+        boardService.write(username, board);
         return "redirect:/board/list";
     }
 

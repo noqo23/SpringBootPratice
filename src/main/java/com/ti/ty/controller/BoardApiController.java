@@ -2,6 +2,7 @@ package com.ti.ty.controller;
 import com.ti.ty.model.Board;
 import com.ti.ty.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
@@ -51,8 +52,10 @@ class BoardApiController {
                 });
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/api/boards/{id}")
     void deleteBoard(@PathVariable Long id) {
         boardRepository.deleteById(id);
     }
 }
+
